@@ -17,21 +17,21 @@ struct Crate {
 
 pub struct Network {}
 
-impl interface::Network for Network {
-    fn get_crate_version(&self, name: String) -> Result<String, String> {
-        let url = create_url(name)?;
-        let mut response = create_response(url)?;
+// impl interface::Network for Network {
+//     fn get_crate_version(&self, name: String) -> Result<String, String> {
+//         let url = create_url(name)?;
+//         let mut response = create_response(url)?;
 
-        if response.status().is_success() {
-            let version = get_response_max_version(&mut response)?;
-            return Ok(version);
-        } else if response.status().is_client_error() {
-            return Err(String::from("Package not found"));
-        } else {
-            return Err(response.status().to_string());
-        }
-    }
-}
+//         if response.status().is_success() {
+//             let version = get_response_max_version(&mut response)?;
+//             return Ok(version);
+//         } else if response.status().is_client_error() {
+//             return Err(String::from("Package not found"));
+//         } else {
+//             return Err(response.status().to_string());
+//         }
+//     }
+// }
 
 fn create_url(name: String) -> Result<reqwest::Url, String> {
     match reqwest::Url::parse(&(String::from(BASE_URL) + &name)) {

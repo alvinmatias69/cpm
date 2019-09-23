@@ -1,7 +1,8 @@
 pub trait Network {
-    fn get_crate_version(&self, name: String) -> Result<String, String>;
+    fn get_crate_version(&self, name: String) -> Result<Vec<String>, String>;
 }
 
 pub trait Crates {
-    fn add_dependency(&self, name: String, version: String) -> Result<(), String>;
+    fn read(&self) -> Result<Vec<String>, String>;
+    fn write(&self, content: Vec<String>) -> Result<(), String>;
 }
