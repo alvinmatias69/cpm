@@ -11,7 +11,7 @@ const LATEST: &'static str = "latest";
 const DEPENDENCIES_KEY: &'static str = "[dependencies]";
 
 impl Add {
-    fn new(
+    pub fn new(
         name: String,
         version: String,
         network: Box<dyn Network>,
