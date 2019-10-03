@@ -1,4 +1,4 @@
-use super::interface::{Crates, Network};
+use super::interface::{Crates, Display, Network};
 
 pub struct NetworkSimulator {
     result: Vec<String>,
@@ -64,4 +64,17 @@ impl Crates for CratesSimulator {
         }
         Ok(())
     }
+}
+
+pub struct DisplaySimulator {}
+
+impl DisplaySimulator {
+    pub fn new() -> DisplaySimulator {
+        DisplaySimulator {}
+    }
+}
+
+impl Display for DisplaySimulator {
+    fn start_loading(&mut self, message: &str) {}
+    fn stop_loading(&mut self, success: bool) {}
 }

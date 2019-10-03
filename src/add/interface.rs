@@ -9,7 +9,5 @@ pub trait Crates {
 
 pub trait Display {
     fn start_loading(&mut self, message: &str);
-    fn stop_loading(&mut self);
-    fn success(&self, message: String);
-    fn failure(&self, message: String);
+    fn stop_loading(&mut self, success: bool);
 }

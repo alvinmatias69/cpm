@@ -31,26 +31,22 @@ impl interface::Display for Display {
             while alive.load(Ordering::SeqCst) {
                 print!("\r{} {}", FRAMES[idx % 6], message_string);
                 idx = idx + 1;
-                thread::sleep(time::Duration::from_millis(1 / 60));
+                thread::sleep(Duration::from_millis(1 / 60));
             }
         }));
     }
 
-    fn stop_loading(&mut self) {
+    fn stop_loading(&mut self, success: bool) {
         self.alive.store(false, Ordering::SeqCst);
         self.handle
             .take()
             .expect("Called stop on non-running thread")
             .join()
             .expect("Could not join spawned thread");
-        println!("\r✓");
-    }
-
-    fn success(&self, message: String) {
-        unimplemented!();
-    }
-
-    fn failure(&self, message: String) {
-        unimplemented!();
+        if success {
+            println!("\r✓");
+        } else {
+            println!("\r✘");
+        }
     }
 }
